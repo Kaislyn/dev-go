@@ -28,8 +28,9 @@
 
 ### 2. 重新签名公式（底层逻辑）
 ```go
-新签名 = HS256(Header 内容 + Payload 内容 + 服务器密钥 jwtKey)
+新签名 = HMACSHA256( Base64UrlEncode(Header) + "." + Base64UrlEncode(Payload) , 服务器密钥 jwtKey )
 ```
+(注：底层库会自动将 Header 和 Payload 进行 Base64Url 编码，并用 . 拼接后，再结合密钥进行哈希签名计算。)
 
 ### 3. 核心作用
 唯一作用：**验证令牌的真实性和完整性**，防止令牌被篡改、伪造，是 JWT 安全体系的核心。

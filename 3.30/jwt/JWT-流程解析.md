@@ -7,11 +7,11 @@
 ## 一、GenerateToken 令牌签发函数
 ### 1. 函数定义
 ```go
-func GenerateToken(userID int664, userName string, role string) (string, error)
+func GenerateToken(userID int64, userName string, role string) (string, error)
 ```
 
 ### 2. 核心作用
-接收用户业务身份信息，构建**自定义载荷(CustomClaims)**，通过 **HMAC-SHA256 对称加密算法** 生成携带数字签名的 JWT 令牌，完成身份凭证的签发。
+接收用户业务身份信息，构建**自定义载荷(CustomClaims)**，通过 **HMAC-SHA256 对称签名算法**（注意：JWT 的作用是防篡改，而非加密防窥探，任何人都可以解码看到载荷内容）生成携带数字签名的 JWT 令牌，完成身份凭证的签发。
 
 ### 3. 入参/出参（专业定义）
 | 类型 | 参数名   | 数据类型 | 含义                      |

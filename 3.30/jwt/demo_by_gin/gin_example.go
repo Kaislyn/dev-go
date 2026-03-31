@@ -142,7 +142,7 @@ func main() {
 		authGroup.GET("/profile", func(c *gin.Context) {
 			// 从 Context 中安全地取出刚才中间件放进去的数据
 			userID, _ := c.Get("userID")
-			username, _ := c.Get("username")
+			username, _ := c.Get("userName")
 			role, _ := c.Get("role")
 
 			c.JSON(http.StatusOK, gin.H{

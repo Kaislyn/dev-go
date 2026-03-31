@@ -6,6 +6,7 @@ Header（头部）：记录加密算法（比如 HS256）。
 Payload（载荷）：存放不敏感的用户信息（比如用户 ID、过期时间）。
 Signature（签名）：核心防伪标志，用服务器的私钥生成的。
 */
+
 package main
 
 import (
@@ -56,6 +57,10 @@ func GenerateToken(userID int64, userName string, role string) (string, error) {
 	// 使用我们的机密密钥，进行最终的数字签名，生成真正的字符串 Token
 	return token.SignedString(jwtKey)
 }
+
+// 关于算法的解释：
+// HMAC 是算法家族（大类）
+// HS256 是这个家族里最常用的具体算法（小类）
 
 // 核心功能 2：解析并校验 Token (每次请求 API 时调用)
 func ParseToken(tokenString string) (*CustomClaims, error) {
